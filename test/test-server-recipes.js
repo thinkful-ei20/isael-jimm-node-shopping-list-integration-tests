@@ -40,5 +40,19 @@ describe('Recipes', function(){
       });
   });
 
+  it.only('should add a recipe on POST', function(){
+    const recipe = {name: 'test', ingredients: ['test', 'test2']};
+    return chai.request(app)
+      .post('/recipes')
+      .send(recipe)
+      .then(function(res){
+        expect(res).to.have.status(201);
+        expect(res).to.be.json;
+        expect(res.body).to.be.a('object');
+        expect(res.body).to.include.keys('name','ingredients', 'id');
+        expect(res.body.id).to.not.equal(null);
+        expect(res.body).to.deep.equal(Object.assign(recipe, {id: res.body.id}));
+      });
+  });
 
 });
