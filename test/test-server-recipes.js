@@ -40,7 +40,7 @@ describe('Recipes', function(){
       });
   });
 
-  it.only('should add a recipe on POST', function(){
+  it('should add a recipe on POST', function(){
     const recipe = {name: 'test', ingredients: ['test', 'test2']};
     return chai.request(app)
       .post('/recipes')
@@ -83,7 +83,7 @@ describe('Recipes', function(){
 
   it('should delete items on DELETE', function() {
     return chai.request(app)
-    
+
       .get('/recipes')
       .then(function(res) {
         return chai.request(app)
